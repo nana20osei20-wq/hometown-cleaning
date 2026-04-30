@@ -29,11 +29,207 @@
   <a class="btn" href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service">WhatsApp</a>
 
   <img src=https://images.unsplash.com/photo-1686178827149-6d55c72d81df?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=giorgio-trovato-5TXz228u4eo-unsplash.jpg">
-</section>
-
+<!-- 
+INSTRUCTIONS: Replace your current "Why Choose Us" section in index.html with this code.
+Find this in your index.html:
 <section>
   <h2>Why Choose Us</h2>
-  <div class="card">✔ Reliable service</div>
+  <div class="card">✓ Reliable service</div>
+  <div class="card">✓ Fast WhatsApp response</div>
+  <div class="card">✓ Affordable pricing</div>
+</section>
+
+And replace it with everything below:
+-->
+
+<style>
+  .why-section {
+    padding: 60px 20px;
+    background: #f8f9ff;
+    text-align: center;
+  }
+
+  .why-section h2 {
+    font-size: 2rem;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .why-subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1rem;
+  }
+
+  .accordion {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .accordion-item {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .accordion-item:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px;
+    cursor: pointer;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .accordion-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .accordion-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .icon-blue { background: #e8f0fe; }
+  .icon-green { background: #e6f4ea; }
+  .icon-orange { background: #fff3e0; }
+
+  .accordion-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    text-align: left;
+  }
+
+  .accordion-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .badge-blue { background: #e8f0fe; color: #1967d2; }
+  .badge-green { background: #e6f4ea; color: #137333; }
+  .badge-orange { background: #fff3e0; color: #e65100; }
+
+  .accordion-arrow {
+    font-size: 1.2rem;
+    color: #999;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.active .accordion-arrow {
+    transform: rotate(180deg);
+    color: #1967d2;
+  }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .accordion-item.active .accordion-body {
+    max-height: 500px;
+  }
+
+  .accordion-content {
+    padding: 0 24px 24px 24px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+  }
+
+  .accordion-content p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: #444;
+    background: #f8f9ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+
+  .feature-list li::before {
+    content: "✓";
+    color: #137333;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .accordion-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 4px;
+  }
+
+  .cta-blue { background: #1967d2; color: white; }
+  .cta-green { background: #137333; color: white; }
+  .cta-orange { background: #e65100; color: white; }
+
+  @media (max-width: 600px) {
+    .feature-list {
+      grid-template-columns: 1fr;
+    }
+    .why-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<section class="why-section">
+  <h2>Why Choose Us</h2>
+  <p class="why-subtitle">We go above and beyond to make your space shine ✨</p>
+
+  <div class="accordion">
+<!-- Card 1: Reliable Service -->
+<div class="accordion-item" onclick="toggleAccordion(this)">
+  <div class="accordion-header">
+    <div class="accordion-left">
   <div class="card">✔ Fast WhatsApp response</div>
   <div class="card">✔ Affordable pricing</div>
 </section>

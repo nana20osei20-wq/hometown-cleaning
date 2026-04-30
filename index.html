@@ -1,25 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Website</title>
-</head>
-<body>
+<li>24-hour reminder sent</li>
+          <li>Real-time updates</li>
+          <li>Easy rescheduling</li>
+          <li>Available Mon-Sat</li>
+        </ul>
+        <p>Simply send us a WhatsApp message with your details and we'll get back to you with a quote and available dates in no time!</p>
+        <a href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service" target="_blank" class="accordion-cta cta-green">Chat With Us Now →</a>
+      </div>
+    </div>
+  </div>
 
-  <h1>Welcome to My Website</h1>
-  <p>This is my first website.</p>
+  <div class="accordion-item" onclick="toggleAccordion(this)">
+    <div class="accordion-header">
+      <div class="accordion-left">
+        <div class="accordion-icon icon-orange">💰</div>
+        <div>
+          <div class="accordion-title">✓ Affordable Pricing</div>
+          <span class="accordion-badge badge-orange">No Hidden Charges</span>
+        </div>
+      </div>
+      <div class="accordion-arrow">▼</div>
+    </div>
+    <div class="accordion-body">
+      <div class="accordion-content">
+        <p>Quality cleaning shouldn't break the bank. We offer competitive, transparent pricing with no surprises — what we quote is exactly what you pay.</p>
+        <ul class="feature-list">
+          <li>1 Bedroom — GHS 80</li>
+          <li>2 Bedrooms — GHS 150</li>
+          <li>3 Bedrooms — GHS 200</li>
+          <li>Deep Clean — +GHS 100</li>
+          <li>Office Clean — GHS 250</li>
+          <li>Free quotes always</li>
+        </ul>
+        <p>We also offer loyalty discounts for regular clients. Pay after the job — Mobile Money or cash accepted!</p>
+        <a href="https://form.jotform.com/261156026909054" target="_blank" class="accordion-cta cta-orange">Get a Free Quote →</a>
+      </div>
+    </div>
+  </div>
 
-</body>
-</html>
+</div>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Currency Website</title>
-</head>
-<body>
+  </section>
 
-  <h1>Currency Exchange</h1>
-  <p>We use Cedi (GHS), Dollar (USD), and Pound (GBP)</p>
+  <footer>
+    <p>📞 Call/WhatsApp: <a href="tel:0208828635">0208828635</a></p>
+    <p style="margin-top:8px">© 2026 Hometown Co Cleaning Services — Kasoa & Accra, Ghana</p>
+  </footer>
+
+  <script src="//code.tidio.co/vre9z0lkbppu7xoybaqcxrergolc1zzh.js" async></script>
+
+  <script>
+    function toggleAccordion(item) {
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>

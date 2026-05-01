@@ -1,53 +1,397 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Services - Hometown Co Cleaning</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Hometown Co Cleaning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --mint:    #d4ede3;
+      --teal:    #1a6e58;
+      --teal-dk: #0f4438;
+      --cream:   #f9f7f2;
+      --charcoal:#1e2221;
+      --muted:   #5c6b65;
+      --border:  rgba(26,110,88,0.15);
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+    /* ── NAV ── */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(249,247,242,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.4rem; color: var(--teal-dk); text-decoration: none; }
+    nav { display: flex; gap: 2rem; }
+    nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--teal); }
+    nav a.active { border-bottom: 1.5px solid var(--teal); padding-bottom: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 5vw 3.5rem;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 600; line-height: 1.1; color: var(--teal-dk); margin-bottom: 1.2rem; }
+    .hero p { font-size: 0.95rem; line-height: 1.8; color: var(--muted); max-width: 420px; }
+
+    .trust-grid {
+      background: var(--mint); border-radius: 20px; padding: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .trust-item { display: flex; align-items: flex-start; gap: 0.6rem; }
+    .t-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .t-icon svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .t-label { font-size: 0.82rem; font-weight: 500; color: var(--teal-dk); line-height: 1.4; padding-top: 6px; }
+
+    /* ── SECTION HEADER ── */
+    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 1rem 5vw 5rem; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.4rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--teal-dk); margin-bottom: 0.6rem; }
+    .section-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 3rem; }
+
+    /* ── SERVICE CARDS ── */
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .service-card.reverse { direction: rtl; }
+    .service-card.reverse > * { direction: ltr; }
+
+    /* ── BEFORE/AFTER SLIDER ── */
+    .ba-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      cursor: ew-resize;
+      user-select: none;
+      background: #111;
+    }
+
+    .ba-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      display: block;
+    }
+
+    .ba-before { z-index: 1; }
+    .ba-after  { z-index: 2; clip-path: inset(0 50% 0 0); }
+
+    .ba-divider {
+      position: absolute; top: 0; bottom: 0;
+      left: 50%; width: 2px;
+      background: #fff;
+      z-index: 10;
+      transform: translateX(-50%);
+    }
+    .ba-handle {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.28);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 11;
+    }
+    .ba-handle svg { width: 18px; height: 18px; fill: var(--teal-dk); }
+
+    .ba-label {
+      position: absolute; bottom: 12px;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .ba-label.before { left: 12px; background: rgba(0,0,0,0.5); color: #fff; z-index: 3; }
+    .ba-label.after  { right: 12px; background: rgba(26,110,88,0.85); color: #fff; z-index: 12; }
+
+    .ba-hint {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.9); z-index: 12;
+      background: rgba(0,0,0,0.35); padding: 3px 12px; border-radius: 20px;
+      pointer-events: none; white-space: nowrap;
+      opacity: 1; transition: opacity 0.5s;
+    }
+    .ba-hint.hide { opacity: 0; }
+
+    /* ── CARD BODY ── */
+    .card-body {
+      padding: 2.5rem;
+      display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+    }
+    .service-tag {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal); background: var(--mint);
+      padding: 4px 12px; border-radius: 20px; align-self: flex-start;
+    }
+    .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; font-weight: 600; color: var(--teal-dk); line-height: 1.15; }
+    .card-body p { font-size: 0.875rem; line-height: 1.75; color: var(--muted); }
+
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .checklist li {
+      font-size: 0.83rem; color: var(--charcoal);
+      display: flex; align-items: center; gap: 0.55rem;
+    }
+    .checklist li::before {
+      content: '';
+      width: 17px; height: 17px; border-radius: 50%; flex-shrink: 0;
+      background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/10px no-repeat;
+    }
+
+    .book-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-dk); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.75rem 1.6rem; border-radius: 50px; text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .book-btn:hover { background: var(--teal); transform: translateY(-2px); }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--teal-dk);
+      border-radius: 20px; padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      max-width: 1200px; margin: 0 auto 4rem; margin-left: auto; margin-right: auto;
+      margin-bottom: 4rem;
+    }
+    .cta h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: #fff; line-height: 1.2; }
+    .cta p { font-size: 0.87rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
+    .cta-btn {
+      background: var(--mint); color: var(--teal-dk);
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+      padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .cta-btn:hover { background: #fff; transform: scale(1.03); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 5vw 2rem; }
+      .trust-grid { display: none; }
+      .service-card { grid-template-columns: 1fr !important; direction: ltr !important; }
+      .card-body { padding: 1.75rem; }
+      .cta { flex-direction: column; align-items: flex-start; padding: 2.5rem; }
+    }
+  </style>
+</head>
 <body>
 
 <header>
-  <h1>Our Services</h1>
+  <a class="logo" href="index.html">Hometown Co.</a>
   <nav>
     <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
+    <a href="services.html" class="active">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
-    <h3>Residential Cleaning</h3>
-    <p>We clean homes to make them fresh and comfortable.</p>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="eyebrow">What we offer</p>
+    <h1>The proof is in the before &amp; after.</h1>
+    <p style="margin-top:1rem;">
+      Drag the sliders below to see the real transformations we deliver — from homes and offices to post-construction sites.
+    </p>
   </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c">
-    <h3>Commercial Cleaning</h3>
-    <p>Offices, shops, and business spaces cleaning.</p>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <span class="t-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span class="t-label">Vetted &amp; insured team</span>
+    </div>
+    <div class="trust-item">
+      <span class="t-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+      <span class="t-label">Flexible scheduling</span>
+    </div>
+    <div class="trust-item">
+      <span class="t-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+      <span class="t-label">Satisfaction guaranteed</span>
+    </div>
+    <div class="trust-item">
+      <span class="t-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.21 3.39 2 2 0 012.18 1H5a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg></span>
+      <span class="t-label">WhatsApp support</span>
+    </div>
   </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea">
-    <h3>Move-In / Move-Out Cleaning</h3>
-    <p>Deep cleaning for empty apartments.</p>
-  </div>
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d">
-    <h3>Post-Construction Cleaning</h3>
-    <p>We remove dust and debris after building work.</p>
-  </div>
-
 </section>
 
+<!-- SERVICES -->
+<div class="section-wrap">
+  <p class="section-label">Our services</p>
+  <h2 class="section-title">Slide to see the difference</h2>
+  <p class="section-sub">Drag the white handle left or right on any image to reveal the before and after.</p>
+
+  <!-- 1. RESIDENTIAL -->
+  <article class="service-card">
+    <div class="ba-wrap" data-ba>
+      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop" alt="Messy living room before cleaning"/>
+      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop" alt="Clean living room after cleaning"/>
+      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+      <span class="ba-label before">Before</span>
+      <span class="ba-label after">After</span>
+      <span class="ba-hint">&#8592; drag &#8594;</span>
+    </div>
+    <div class="card-body">
+      <span class="service-tag">Homes</span>
+      <h3>Residential Cleaning</h3>
+      <p>We bring freshness and comfort back to your home — every surface, corner, and room handled with care and consistency.</p>
+      <ul class="checklist">
+        <li>Living rooms, bedrooms &amp; hallways</li>
+        <li>Kitchen deep-clean &amp; sanitisation</li>
+        <li>Bathroom scrub &amp; disinfection</li>
+        <li>Dusting, vacuuming &amp; mopping</li>
+      </ul>
+      <a class="book-btn" href="contact.html">Book a session &#8594;</a>
+    </div>
+  </article>
+
+  <!-- 2. COMMERCIAL -->
+  <article class="service-card reverse">
+    <div class="ba-wrap" data-ba>
+      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1497366754035-f200586c5a36?w=800&auto=format&fit=crop" alt="Messy office before cleaning"/>
+      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop" alt="Clean office after cleaning"/>
+      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+      <span class="ba-label before">Before</span>
+      <span class="ba-label after">After</span>
+      <span class="ba-hint">&#8592; drag &#8594;</span>
+    </div>
+    <div class="card-body">
+      <span class="service-tag">Offices &amp; Shops</span>
+      <h3>Commercial Cleaning</h3>
+      <p>A spotless workspace impresses clients and keeps your team at their best. We work around your schedule — evenings or weekends included.</p>
+      <ul class="checklist">
+        <li>Desks, chairs &amp; common areas</li>
+        <li>Washrooms &amp; kitchenettes</li>
+        <li>Retail floors &amp; fitting rooms</li>
+        <li>Regular or one-off contracts</li>
+      </ul>
+      <a class="book-btn" href="contact.html">Request a quote &#8594;</a>
+    </div>
+  </article>
+
+  <!-- 3. MOVE-IN / MOVE-OUT -->
+  <article class="service-card">
+    <div class="ba-wrap" data-ba>
+      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1543939374-0b50e5f1c53e?w=800&auto=format&fit=crop" alt="Empty dirty apartment before cleaning"/>
+      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop" alt="Sparkling clean apartment after cleaning"/>
+      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+      <span class="ba-label before">Before</span>
+      <span class="ba-label after">After</span>
+      <span class="ba-hint">&#8592; drag &#8594;</span>
+    </div>
+    <div class="card-body">
+      <span class="service-tag">Moving</span>
+      <h3>Move-In / Move-Out Cleaning</h3>
+      <p>Leaving or arriving? We deep-clean every inch so you hand over or step into a genuinely fresh, ready space.</p>
+      <ul class="checklist">
+        <li>Full scrub of all rooms</li>
+        <li>Inside cupboards &amp; wardrobes</li>
+        <li>Oven, fridge &amp; appliances</li>
+        <li>Windows, sills &amp; skirting boards</li>
+      </ul>
+      <a class="book-btn" href="contact.html">Schedule now &#8594;</a>
+    </div>
+  </article>
+
+  <!-- 4. POST-CONSTRUCTION -->
+  <article class="service-card reverse">
+    <div class="ba-wrap" data-ba>
+      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop" alt="Dusty construction site before cleaning"/>
+      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&auto=format&fit=crop" alt="Clean finished room after post-construction cleaning"/>
+      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+      <span class="ba-label before">Before</span>
+      <span class="ba-label after">After</span>
+      <span class="ba-hint">&#8592; drag &#8594;</span>
+    </div>
+    <div class="card-body">
+      <span class="service-tag">After Building</span>
+      <h3>Post-Construction Cleaning</h3>
+      <p>Renovation dust and builder debris removed thoroughly — so your new space is gleaming and truly move-in ready.</p>
+      <ul class="checklist">
+        <li>Dust removal from all surfaces</li>
+        <li>Paint splatters &amp; adhesive residue</li>
+        <li>Debris sweep &amp; disposal</li>
+        <li>Window &amp; floor polish</li>
+      </ul>
+      <a class="book-btn" href="contact.html">Get a quote &#8594;</a>
+    </div>
+  </article>
+</div>
+
+<!-- CTA -->
+<div style="padding:0 5vw;">
+  <div class="cta">
+    <div>
+      <h2>Ready for your own transformation?</h2>
+      <p>Call or WhatsApp us — we'll get you sorted quickly.</p>
+    </div>
+    <a class="cta-btn" href="tel:0208828635">Call 0208 828 635</a>
+  </div>
+</div>
+
 <footer>
-  Call/WhatsApp: 0208828635
+  <span>&#169; 2025 Hometown Co Cleaning</span>
+  <span>Call / WhatsApp: <a href="tel:0208828635">0208 828 635</a></span>
 </footer>
 
+<script>
+  document.querySelectorAll('[data-ba]').forEach(function(wrap) {
+    var after   = wrap.querySelector('.ba-after');
+    var divider = wrap.querySelector('.ba-divider');
+    var hint    = wrap.querySelector('.ba-hint');
+    var dragging = false;
+    var moved    = false;
+
+    function setPos(clientX) {
+      var rect = wrap.getBoundingClientRect();
+      var pct  = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+      after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      divider.style.left   = pct + '%';
+      if (!moved) { hint.classList.add('hide'); moved = true; }
+    }
+
+    wrap.addEventListener('mousedown',  function(e) { dragging = true; setPos(e.clientX); });
+    wrap.addEventListener('touchstart', function(e) { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mousemove',  function(e) { if (dragging) setPos(e.clientX); });
+    window.addEventListener('touchmove',  function(e) { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mouseup',    function() { dragging = false; });
+    window.addEventListener('touchend',   function() { dragging = false; });
+  });
+</script>
 </body>
 </html>

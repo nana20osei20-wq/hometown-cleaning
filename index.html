@@ -1,47 +1,859 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hometown Co Cleaning Services</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hometown Co Cleaning Services — Kasoa & Accra</title>
+  <meta name="description" content="Professional cleaning services in Kasoa & Accra. Residential, commercial, move-in and post-construction cleaning. Call or WhatsApp 0208828635 for a free quote.">
+  <meta property="og:title" content="Hometown Co Cleaning Services">
+  <meta property="og:description" content="Fast, reliable, affordable cleaning in Kasoa & Accra. Book today!">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f2744;
+      --navy-mid: #1a3a5c;
+      --blue: #1d5fa8;
+      --blue-light: #e8f1fb;
+      --ivory: #faf8f4;
+      --ivory-dark: #f0ece4;
+      --gold: #c8923a;
+      --white: #ffffff;
+      --dark: #111827;
+      --gray: #6b7280;
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --wa-green: #25D366;
+      --wa-dark: #1da851;
+    }
 
-  <!-- SEO -->
-  <meta name="description" content="Cleaning services in Kasoa and Accra. Residential, commercial, move-in and post-construction cleaning. Call 0208828635">
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 9px 20px;
+      letter-spacing: 0.02em;
+    }
+    .topbar a { color: var(--gold); text-decoration: none; font-weight: 600; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 68px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 20px; height: 20px; }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--navy);
+    }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a {
+      color: var(--gray); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy); color: white !important;
+      padding: 9px 20px; border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: white; border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 0 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--dark); text-decoration: none;
+      font-size: 0.95rem; font-weight: 500;
+      padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      color: white;
+      padding: 90px 40px 80px;
+      position: relative;
+      overflow: hidden;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 10% 60%, rgba(29,95,168,0.55) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(200,146,58,0.18) 0%, transparent 45%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-layout {
+      position: relative;
+      max-width: 1160px; margin: 0 auto; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-content { animation: fadeUp 0.8s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 28px; color: rgba(255,255,255,0.8);
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 22px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 36px; max-width: 460px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-call {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--gold); color: var(--navy);
+      padding: 15px 28px; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(200,146,58,0.4);
+    }
+    .btn-call:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,146,58,0.5); }
+    .btn-call svg { width: 18px; height: 18px; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--wa-green); color: white;
+      padding: 15px 28px; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+    .btn-wa svg { width: 18px; height: 18px; }
+    .hero-trust {
+      margin-top: 28px;
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+    .trust-item::before {
+      content: '✓';
+      color: var(--gold); font-weight: 700; font-size: 0.9rem;
+    }
+
+    /* hero image panel */
+    .hero-visual {
+      position: relative;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+    .hero-img-wrap {
+      border-radius: 20px; overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero-chip {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: white; border-radius: 16px;
+      padding: 16px 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .chip-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chip-icon svg { width: 22px; height: 22px; stroke: var(--blue); }
+    .chip-text .chip-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1;
+    }
+    .chip-text .chip-label { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+    .hero-chip-2 {
+      position: absolute;
+      top: -16px; right: -16px;
+      background: var(--gold); border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 4px 20px rgba(200,146,58,0.35);
+    }
+    .hero-chip-2 span { font-size: 0.82rem; font-weight: 700; color: white; white-space: nowrap; }
+
+    /* ─── STATS BAR ─── */
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--ivory); border-bottom: 1px solid var(--ivory-dark);
+    }
+    .stat {
+      padding: 40px 28px; text-align: center;
+      border-right: 1px solid var(--ivory-dark);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--navy); display: block; line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.8rem; color: var(--gray);
+      text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { padding: 100px 40px; max-width: 1160px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; background: var(--blue-light); color: var(--blue);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .section-header { margin-bottom: 56px; }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+      color: var(--navy); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 12px;
+    }
+    .section-header h2 em { font-style: italic; color: var(--blue); }
+    .section-header p { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 500px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .service-card {
+      background: var(--ivory); border-radius: 20px;
+      padding: 36px 28px; border: 1px solid var(--ivory-dark);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.09); border-color: transparent; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+    }
+    .service-icon svg { width: 26px; height: 26px; stroke: var(--blue); }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 10px;
+    }
+    .service-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+
+    /* ─── WHY US ─── */
+    .why {
+      background: var(--navy); padding: 100px 40px;
+      position: relative; overflow: hidden;
+    }
+    .why::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(200,146,58,0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(29,95,168,0.25) 0%, transparent 45%);
+    }
+    .why-inner { max-width: 1160px; margin: 0 auto; position: relative; }
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-left .section-tag { background: rgba(200,146,58,0.15); color: var(--gold); }
+    .why-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+      color: white; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 20px;
+    }
+    .why-left h2 em { font-style: italic; color: var(--gold); }
+    .why-left p { color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.75; margin-bottom: 32px; }
+    .btn-quote {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--gold); color: var(--navy);
+      padding: 14px 28px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 700; text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(200,146,58,0.3);
+    }
+    .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,146,58,0.4); }
+    .why-list { display: flex; flex-direction: column; gap: 16px; }
+    .why-item {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 22px 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .why-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    .why-check {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(200,146,58,0.15); border: 1px solid rgba(200,146,58,0.25);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .why-check svg { width: 16px; height: 16px; stroke: var(--gold); }
+    .why-item-text h4 { font-size: 0.95rem; font-weight: 600; color: white; margin-bottom: 4px; }
+    .why-item-text p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ─── COVERAGE ─── */
+    .coverage { padding: 100px 40px; background: var(--ivory); }
+    .coverage-inner { max-width: 1160px; margin: 0 auto; text-align: center; }
+    .coverage-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+      color: var(--navy); margin-bottom: 14px;
+    }
+    .coverage-inner h2 em { font-style: italic; color: var(--blue); }
+    .coverage-inner > p { color: var(--gray); font-size: 1rem; line-height: 1.7; margin-bottom: 48px; }
+    .areas-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      max-width: 800px; margin: 0 auto 48px;
+    }
+    .area-pill {
+      background: white; border: 1px solid var(--ivory-dark); border-radius: 12px;
+      padding: 16px 12px; text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .area-pill:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(29,95,168,0.1); transform: translateY(-2px); }
+    .area-pill svg { width: 20px; height: 20px; stroke: var(--blue); margin-bottom: 8px; }
+    .area-pill span { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: white; padding: 80px 40px;
+      text-align: center; position: relative; overflow: hidden;
+      border-top: 1px solid var(--ivory-dark);
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(29,95,168,0.05) 0%, transparent 65%);
+    }
+    .cta-band-inner { position: relative; max-width: 600px; margin: 0 auto; }
+    .cta-band h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;
+      color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .cta-band p { color: var(--gray); font-size: 1rem; line-height: 1.7; margin-bottom: 36px; }
+    .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--navy);
+      padding: 14px 28px; border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .btn-outline-dark:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: white;
+      padding: 56px 40px 28px;
+    }
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px; padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px;
+    }
+    .footer-brand .logo-text { color: white; }
+    .footer-brand .logo-mark { background: var(--gold); }
+    .footer-desc { color: rgba(255,255,255,0.4); font-size: 0.875rem; line-height: 1.7; margin-top: 14px; }
+    .footer-col h4 {
+      font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.35);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,0.6); text-decoration: none;
+      font-size: 0.875rem; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+    .footer-badges { display: flex; gap: 10px; }
+    .badge-pill {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; padding: 4px 12px;
+      font-size: 0.72rem; color: rgba(255,255,255,0.4); font-weight: 500;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .hero { padding: 60px 20px 60px; min-height: auto; }
+      .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .hero h1 { font-size: 2.6rem; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .services { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why { padding: 70px 20px; }
+      .why-layout { grid-template-columns: 1fr; gap: 40px; }
+      .coverage { padding: 60px 20px; }
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-band { padding: 60px 20px; }
+      footer { padding: 50px 20px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--ivory-dark); }
+      .stat:last-child { border-bottom: none; }
+      .hero-actions { flex-direction: column; }
+      .btn-call, .btn-wa { justify-content: center; }
+    }
+  </style>
 </head>
-
 <body>
 
+<!-- ─── TOPBAR ─── -->
+<div class="topbar" role="banner">
+  📍 Serving Kasoa & Accra &nbsp;·&nbsp; Call or WhatsApp: <a href="tel:0208828635">0208828635</a>
+</div>
+
+<!-- ─── HEADER ─── -->
 <header>
-  <h1>Hometown Co Cleaning Services</h1>
-  <nav>
-    <a href="index.html">Home</a>
+  <a href="index.html" class="logo" aria-label="Hometown Co Home">
+    <div class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L3 8v10h5v-5h4v5h5V8L10 2z" fill="white" opacity="0.9"/>
+      </svg>
+    </div>
+    <span class="logo-text">Hometown Co</span>
+  </a>
+  <nav aria-label="Main navigation">
+    <a href="index.html" class="active">Home</a>
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
+    <a href="https://form.jotform.com/261156026909054" target="_blank" class="nav-cta">Free Quote</a>
   </nav>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu(this)">
+    <span></span><span></span><span></span>
+  </button>
 </header>
-
-<section>
-  <h2>We Make Your Space Shine ✨</h2>
-  <p>Fast and reliable cleaning in Kasoa & Accra.</p>
-
-  <div class="btn-group">
-  <a class="btn btn-primary" href="tel:0208828635">Call Now</a>
-  <a class="btn btn-success" href="https://form.jotform.com/261156026909054" target="_blank">Get Free Quote</a>
-  <a class="btn btn-outline" href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service">WhatsApp</a>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://form.jotform.com/261156026909054" target="_blank">Get Free Quote</a>
 </div>
-  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+
+<!-- ─── HERO ─── -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-layout">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Kasoa & Accra's Trusted Cleaners</div>
+      <h1 id="hero-heading">
+        Your <em>cleanest</em> home starts here.
+      </h1>
+      <p class="hero-sub">Professional, affordable, and reliable cleaning services — for homes, offices, and everything in between. Book in minutes, enjoy results that last.</p>
+      <div class="hero-actions">
+        <a href="tel:0208828635" class="btn-call" aria-label="Call us now">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+          </svg>
+          Call Now — 0208828635
+        </a>
+        <a href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service" target="_blank" class="btn-wa" aria-label="WhatsApp us">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.118 1.528 5.847L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.213-3.76.895.952-3.653-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+          </svg>
+          WhatsApp Us
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-item">Fully insured</span>
+        <span class="trust-item">Same-day response</span>
+        <span class="trust-item">Free quote</span>
+        <span class="trust-item">Eco-friendly products</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Sparkling clean modern living room">
+      </div>
+      <div class="hero-chip">
+        <div class="chip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+        </div>
+        <div class="chip-text">
+          <div class="chip-num">4.8 ★</div>
+          <div class="chip-label">Average rating</div>
+        </div>
+      </div>
+      <div class="hero-chip-2">
+        <span>50+ Happy Clients</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2>Why Choose Us</h2>
-  <div class="card">✔️ Reliable service</div>
-  <div class="card">✔️ Fast WhatsApp response</div>
-  <div class="card">✔️ Affordable pricing</div>
+<!-- ─── STATS ─── -->
+<section class="stats" aria-label="Our highlights">
+  <div class="stat reveal">
+    <span class="stat-number">50+</span>
+    <span class="stat-label">Happy homes</span>
+  </div>
+  <div class="stat reveal reveal-delay-1">
+    <span class="stat-number">4.8</span>
+    <span class="stat-label">Star rating</span>
+  </div>
+  <div class="stat reveal reveal-delay-2">
+    <span class="stat-number">4</span>
+    <span class="stat-label">Expert cleaners</span>
+  </div>
 </section>
 
-<footer>
-  Call/WhatsApp: 0208828635
+<!-- ─── SERVICES ─── -->
+<section class="services" aria-labelledby="services-heading">
+  <div class="section-header reveal">
+    <span class="section-tag">What We Offer</span>
+    <h2 id="services-heading">Every clean your space <em>needs</em></h2>
+    <p>From weekly home maintenance to one-off deep cleans, we handle it all — professionally and affordably.</p>
+  </div>
+
+  <div class="services-grid">
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <h3>Residential Cleaning</h3>
+      <p>Regular or one-time home cleans that leave every room spotless — bedrooms, bathrooms, kitchens, and living areas done right.</p>
+    </article>
+
+    <article class="service-card reveal reveal-delay-1">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <h3>Office Cleaning</h3>
+      <p>Keep your workspace fresh and productive. We clean offices, shops, and commercial spaces before or after business hours.</p>
+    </article>
+
+    <article class="service-card reveal reveal-delay-2">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3h18v4H3zM3 10h18M3 17h18M3 3v18M21 3v18"/>
+        </svg>
+      </div>
+      <h3>Deep Cleaning</h3>
+      <p>A thorough top-to-bottom clean targeting the grime and buildup that regular cleaning misses. Perfect for a seasonal refresh.</p>
+    </article>
+
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+      <h3>Move-In / Move-Out</h3>
+      <p>Moving is stressful — let us handle the cleaning. We'll make sure your old or new place is immaculate from day one.</p>
+    </article>
+
+    <article class="service-card reveal reveal-delay-1">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+        </svg>
+      </div>
+      <h3>Post-Construction</h3>
+      <p>We remove dust, debris, and construction residue so your newly built or renovated space is ready to be enjoyed immediately.</p>
+    </article>
+
+    <article class="service-card reveal reveal-delay-2">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3>Carpet & Upholstery</h3>
+      <p>Revive your carpets, sofas, and fabric furniture with our specialist cleaning — lifting stains and restoring freshness.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ─── WHY CHOOSE US ─── -->
+<section class="why" aria-labelledby="why-heading">
+  <div class="why-inner">
+    <div class="why-layout">
+      <div class="why-left reveal">
+        <span class="section-tag">Why Hometown Co</span>
+        <h2 id="why-heading">We clean like it's <em>our own home.</em></h2>
+        <p>We're a small, dedicated team that takes enormous pride in every job. No shortcuts, no corners cut — just a genuinely clean space you'll love coming back to.</p>
+        <a href="https://form.jotform.com/261156026909054" target="_blank" class="btn-quote">Get Your Free Quote →</a>
+      </div>
+
+      <div class="why-list reveal reveal-delay-1">
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="why-item-text">
+            <h4>Fast WhatsApp Response</h4>
+            <p>Message us and we'll get back to you same day — usually within the hour.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="why-item-text">
+            <h4>Honest, Affordable Pricing</h4>
+            <p>No hidden fees. We quote upfront so you always know exactly what you're paying.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="why-item-text">
+            <h4>Eco-Friendly Products</h4>
+            <p>Safe for children, pets, and the environment — without compromising on results.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="why-item-text">
+            <h4>Reliable Every Time</h4>
+            <p>We show up when we say we will. Consistent quality, every single visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COVERAGE ─── -->
+<section class="coverage" aria-labelledby="coverage-heading">
+  <div class="coverage-inner">
+    <span class="section-tag reveal">Where We Operate</span>
+    <h2 class="reveal" id="coverage-heading">We come <em>to you</em></h2>
+    <p class="reveal">Based in Kasoa, we serve clients across Greater Accra and the Central Region. Not sure if we cover your area? Just ask!</p>
+    <div class="areas-grid">
+      <div class="area-pill reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Kasoa</span>
+      </div>
+      <div class="area-pill reveal reveal-delay-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Accra</span>
+      </div>
+      <div class="area-pill reveal reveal-delay-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Tema</span>
+      </div>
+      <div class="area-pill reveal reveal-delay-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Weija</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BAND ─── -->
+<section class="cta-band" aria-labelledby="cta-heading">
+  <div class="cta-band-inner reveal">
+    <h2 id="cta-heading">Ready for a spotless space?</h2>
+    <p>Book your clean today — it only takes a minute. Call, WhatsApp, or fill in our free quote form and we'll get back to you fast.</p>
+    <div class="cta-buttons">
+      <a href="tel:0208828635" class="btn-call">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+        </svg>
+        Call 0208828635
+      </a>
+      <a href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service" target="_blank" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.118 1.528 5.847L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.213-3.76.895.952-3.653-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/>
+        </svg>
+        WhatsApp Us
+      </a>
+      <a href="https://form.jotform.com/261156026909054" target="_blank" class="btn-outline-dark">Get Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="Hometown Co Home">
+          <div class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none">
+              <path d="M10 2L3 8v10h5v-5h4v5h5V8L10 2z" fill="white" opacity="0.9"/>
+            </svg>
+          </div>
+          <span class="logo-text">Hometown Co</span>
+        </a>
+        <p class="footer-desc">Professional cleaning services in Kasoa & Accra. Reliable, affordable, and always on time. Call or WhatsApp us today.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Residential Cleaning</a>
+        <a href="services.html">Office Cleaning</a>
+        <a href="services.html">Deep Cleaning</a>
+        <a href="services.html">Move-In / Move-Out</a>
+        <a href="services.html">Post-Construction</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:0208828635">📞 0208828635</a>
+        <a href="https://wa.me/233208828635?text=Hello%20I%20need%20cleaning%20service" target="_blank">💬 WhatsApp</a>
+        <a href="https://form.jotform.com/261156026909054" target="_blank">📋 Free Quote Form</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Hometown Co Cleaning Services. All rights reserved.</span>
+      <div class="footer-badges">
+        <span class="badge-pill">Fully Insured</span>
+        <span class="badge-pill">Eco-Friendly</span>
+        <span class="badge-pill">Free Quotes</span>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script>
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- Live chat -->
 <script src="//code.tidio.co/vre9z0lkbppu7xoybaqcxrergolc1zzh.js" async></script>
 </body>
 </html>

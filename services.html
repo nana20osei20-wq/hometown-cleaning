@@ -77,65 +77,18 @@
     .service-card.reverse { direction: rtl; }
     .service-card.reverse > * { direction: ltr; }
 
-    /* ── BEFORE/AFTER SLIDER ── */
-    .ba-wrap {
-      position: relative;
+    /* ── STATIC CARD IMAGE ── */
+    .card-img-wrap {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
-      cursor: ew-resize;
-      user-select: none;
-      background: #111;
     }
-
-    .ba-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      pointer-events: none;
       display: block;
     }
-
-    .ba-before { z-index: 1; }
-    .ba-after  { z-index: 2; clip-path: inset(0 50% 0 0); }
-
-    .ba-divider {
-      position: absolute; top: 0; bottom: 0;
-      left: 50%; width: 2px;
-      background: #fff;
-      z-index: 10;
-      transform: translateX(-50%);
-    }
-    .ba-handle {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44px; height: 44px;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 2px 14px rgba(0,0,0,0.28);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 11;
-    }
-    .ba-handle svg { width: 18px; height: 18px; fill: var(--teal-dk); }
-
-    .ba-label {
-      position: absolute; bottom: 12px;
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px; border-radius: 20px;
-    }
-    .ba-label.before { left: 12px; background: rgba(0,0,0,0.5); color: #fff; z-index: 3; }
-    .ba-label.after  { right: 12px; background: rgba(26,110,88,0.85); color: #fff; z-index: 12; }
-
-    .ba-hint {
-      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-      font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,255,255,0.9); z-index: 12;
-      background: rgba(0,0,0,0.35); padding: 3px 12px; border-radius: 20px;
-      pointer-events: none; white-space: nowrap;
-      opacity: 1; transition: opacity 0.5s;
-    }
-    .ba-hint.hide { opacity: 0; }
 
     /* ── CARD BODY ── */
     .card-body {
@@ -178,8 +131,7 @@
       background: var(--teal-dk);
       border-radius: 20px; padding: 3rem 4rem;
       display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-      max-width: 1200px; margin: 0 auto 4rem; margin-left: auto; margin-right: auto;
-      margin-bottom: 4rem;
+      max-width: 1200px; margin: 0 auto 4rem;
     }
     .cta h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: #fff; line-height: 1.2; }
     .cta p { font-size: 0.87rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
@@ -225,9 +177,9 @@
 <section class="hero">
   <div>
     <p class="eyebrow">What we offer</p>
-    <h1>The proof is in the before &amp; after.</h1>
+    <h1>Professional cleaning for every space.</h1>
     <p style="margin-top:1rem;">
-      Drag the sliders below to see the real transformations we deliver — from homes and offices to post-construction sites.
+      From homes and offices to post-construction sites — we deliver a thorough, reliable clean every single time.
     </p>
   </div>
   <div class="trust-grid">
@@ -253,18 +205,13 @@
 <!-- SERVICES -->
 <div class="section-wrap">
   <p class="section-label">Our services</p>
-  <h2 class="section-title">Slide to see the difference</h2>
-  <p class="section-sub">Drag the white handle left or right on any image to reveal the before and after.</p>
+  <h2 class="section-title">What we clean</h2>
+  <p class="section-sub">Tailored cleaning solutions for homes, businesses, offices, and post-construction sites.</p>
 
   <!-- 1. RESIDENTIAL -->
   <article class="service-card">
-    <div class="ba-wrap" data-ba>
-      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop" alt="Messy living room before cleaning"/>
-      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop" alt="Clean living room after cleaning"/>
-      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
-      <span class="ba-label before">Before</span>
-      <span class="ba-label after">After</span>
-      <span class="ba-hint">&#8592; drag &#8594;</span>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop" alt="Spotless residential living room after cleaning"/>
     </div>
     <div class="card-body">
       <span class="service-tag">Homes</span>
@@ -282,47 +229,37 @@
 
   <!-- 2. COMMERCIAL -->
   <article class="service-card reverse">
-    <div class="ba-wrap" data-ba>
-      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1497366754035-f200586c5a36?w=800&auto=format&fit=crop" alt="Messy office before cleaning"/>
-      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop" alt="Clean office after cleaning"/>
-      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
-      <span class="ba-label before">Before</span>
-      <span class="ba-label after">After</span>
-      <span class="ba-hint">&#8592; drag &#8594;</span>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop" alt="Clean commercial business premises"/>
     </div>
     <div class="card-body">
       <span class="service-tag">Offices &amp; Shops</span>
       <h3>Commercial Cleaning</h3>
       <p>A spotless workspace impresses clients and keeps your team at their best. We work around your schedule — evenings or weekends included.</p>
       <ul class="checklist">
-        <li>Desks, chairs &amp; common areas</li>
-        <li>Washrooms &amp; kitchenettes</li>
         <li>Retail floors &amp; fitting rooms</li>
+        <li>Washrooms &amp; kitchenettes</li>
+        <li>Entrance &amp; reception areas</li>
         <li>Regular or one-off contracts</li>
       </ul>
       <a class="book-btn" href="contact.html">Request a quote &#8594;</a>
     </div>
   </article>
 
-  <!-- 3. MOVE-IN / MOVE-OUT -->
+  <!-- 3. OFFICE -->
   <article class="service-card">
-    <div class="ba-wrap" data-ba>
-      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1543939374-0b50e5f1c53e?w=800&auto=format&fit=crop" alt="Empty dirty apartment before cleaning"/>
-      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&auto=format&fit=crop" alt="Sparkling clean apartment after cleaning"/>
-      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
-      <span class="ba-label before">Before</span>
-      <span class="ba-label after">After</span>
-      <span class="ba-hint">&#8592; drag &#8594;</span>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop" alt="Tidy modern office workspace after professional cleaning"/>
     </div>
     <div class="card-body">
-      <span class="service-tag">Moving</span>
-      <h3>Move-In / Move-Out Cleaning</h3>
-      <p>Leaving or arriving? We deep-clean every inch so you hand over or step into a genuinely fresh, ready space.</p>
+      <span class="service-tag">Workspace</span>
+      <h3>Office Cleaning</h3>
+      <p>A clean office boosts productivity. We handle daily or weekly cleans so your team can focus on what matters.</p>
       <ul class="checklist">
-        <li>Full scrub of all rooms</li>
-        <li>Inside cupboards &amp; wardrobes</li>
-        <li>Oven, fridge &amp; appliances</li>
-        <li>Windows, sills &amp; skirting boards</li>
+        <li>Desks, screens &amp; keyboards</li>
+        <li>Kitchen &amp; break room</li>
+        <li>Meeting rooms &amp; boardrooms</li>
+        <li>Bins emptied &amp; surfaces sanitised</li>
       </ul>
       <a class="book-btn" href="contact.html">Schedule now &#8594;</a>
     </div>
@@ -330,13 +267,8 @@
 
   <!-- 4. POST-CONSTRUCTION -->
   <article class="service-card reverse">
-    <div class="ba-wrap" data-ba>
-      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop" alt="Dusty construction site before cleaning"/>
-      <img class="ba-img ba-after"  src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&auto=format&fit=crop" alt="Clean finished room after post-construction cleaning"/>
-      <div class="ba-divider"><div class="ba-handle"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
-      <span class="ba-label before">Before</span>
-      <span class="ba-label after">After</span>
-      <span class="ba-hint">&#8592; drag &#8594;</span>
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop" alt="Freshly cleaned newly built interior ready for move-in"/>
     </div>
     <div class="card-body">
       <span class="service-tag">After Building</span>
@@ -351,6 +283,7 @@
       <a class="book-btn" href="contact.html">Get a quote &#8594;</a>
     </div>
   </article>
+
 </div>
 
 <!-- CTA -->
@@ -369,29 +302,5 @@
   <span>Call / WhatsApp: <a href="tel:0208828635">0208 828 635</a></span>
 </footer>
 
-<script>
-  document.querySelectorAll('[data-ba]').forEach(function(wrap) {
-    var after   = wrap.querySelector('.ba-after');
-    var divider = wrap.querySelector('.ba-divider');
-    var hint    = wrap.querySelector('.ba-hint');
-    var dragging = false;
-    var moved    = false;
-
-    function setPos(clientX) {
-      var rect = wrap.getBoundingClientRect();
-      var pct  = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-      after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
-      divider.style.left   = pct + '%';
-      if (!moved) { hint.classList.add('hide'); moved = true; }
-    }
-
-    wrap.addEventListener('mousedown',  function(e) { dragging = true; setPos(e.clientX); });
-    wrap.addEventListener('touchstart', function(e) { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mousemove',  function(e) { if (dragging) setPos(e.clientX); });
-    window.addEventListener('touchmove',  function(e) { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mouseup',    function() { dragging = false; });
-    window.addEventListener('touchend',   function() { dragging = false; });
-  });
-</script>
 </body>
 </html>

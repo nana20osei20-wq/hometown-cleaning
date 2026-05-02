@@ -9,18 +9,34 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --mint:    #d4ede3;
-      --teal:    #1a6e58;
-      --teal-dk: #0f4438;
-      --cream:   #f9f7f2;
-      --charcoal:#1e2221;
-      --muted:   #5c6b65;
-      --border:  rgba(26,110,88,0.15);
+      --navy:      #0f2744;
+      --navy-mid:  #1a3a5c;
+      --blue:      #1d5fa8;
+      --blue-light:#e8f1fb;
+      --ivory:     #faf8f4;
+      --ivory-dark:#f0ece4;
+      --gold:      #c8923a;
+      --white:     #ffffff;
+      --dark:      #111827;
+      --gray:      #6b7280;
+      --green:     #16a34a;
+      --green-dark:#15803d;
+      --wa-green:  #25D366;
+      --wa-dark:   #1da851;
+
+      /* Mapped to layout roles */
+      --mint:    var(--blue-light);
+      --teal:    var(--blue);
+      --teal-dk: var(--navy);
+      --cream:   var(--ivory);
+      --charcoal:var(--dark);
+      --muted:   var(--gray);
+      --border:  rgba(29,95,168,0.15);
     }
 
     body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--charcoal); }
 
-    /* ── NAV ── */
+    /* NAV */
     header {
       position: sticky; top: 0; z-index: 200;
       background: rgba(249,247,242,0.93);
@@ -30,19 +46,19 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px;
     }
-    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.4rem; color: var(--teal-dk); text-decoration: none; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.4rem; color: var(--gold); text-decoration: none; }
     nav { display: flex; gap: 2rem; }
     nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     nav a:hover, nav a.active { color: var(--teal); }
     nav a.active { border-bottom: 1.5px solid var(--teal); padding-bottom: 2px; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       padding: 5rem 5vw 3.5rem;
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
     }
-    .eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .eyebrow { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 600; line-height: 1.1; color: var(--teal-dk); margin-bottom: 1.2rem; }
     .hero p { font-size: 0.95rem; line-height: 1.8; color: var(--muted); max-width: 420px; }
 
@@ -58,13 +74,59 @@
     .t-icon svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .t-label { font-size: 0.82rem; font-weight: 500; color: var(--teal-dk); line-height: 1.4; padding-top: 6px; }
 
-    /* ── SECTION HEADER ── */
-    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 1rem 5vw 5rem; }
+    /* BEFORE/AFTER SECTION */
+    .ba-section {
+      max-width: 1200px; margin: 0 auto 1rem;
+      padding: 3rem 5vw 0;
+    }
+    .ba-section .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.4rem; }
+    .ba-section .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--teal-dk); margin-bottom: 0.6rem; }
+    .ba-section .section-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .ba-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+    .ba-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ba-card:hover img { transform: scale(1.04); }
+    .ba-label {
+      position: absolute;
+      top: 16px; left: 16px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 30px;
+    }
+    .ba-label.before { background: #e74c3c; color: #fff; }
+    .ba-label.after  { background: var(--teal); color: #fff; }
+    .ba-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 2rem 1.2rem 1.2rem;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* SECTION HEADER */
+    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 3rem 5vw 5rem; }
     .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.4rem; }
     .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--teal-dk); margin-bottom: 0.6rem; }
     .section-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 3rem; }
 
-    /* ── SERVICE CARDS ── */
+    /* SERVICE CARDS */
     .service-card {
       background: #fff;
       border: 1px solid var(--border);
@@ -77,7 +139,6 @@
     .service-card.reverse { direction: rtl; }
     .service-card.reverse > * { direction: ltr; }
 
-    /* ── STATIC CARD IMAGE ── */
     .card-img-wrap {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -88,9 +149,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
     }
+    .card-img-wrap:hover img { transform: scale(1.05); }
 
-    /* ── CARD BODY ── */
     .card-body {
       padding: 2.5rem;
       display: flex; flex-direction: column; justify-content: center; gap: 1rem;
@@ -98,7 +160,7 @@
     .service-tag {
       display: inline-block;
       font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--teal); background: var(--mint);
+      color: var(--white); background: var(--gold);
       padding: 4px 12px; border-radius: 20px; align-self: flex-start;
     }
     .card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; font-weight: 600; color: var(--teal-dk); line-height: 1.15; }
@@ -126,9 +188,35 @@
     }
     .book-btn:hover { background: var(--teal); transform: translateY(-2px); }
 
-    /* ── CTA ── */
+    /* GALLERY STRIP */
+    .gallery-strip {
+      max-width: 1200px; margin: 0 auto 4rem;
+      padding: 0 5vw;
+    }
+    .gallery-strip .section-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.4rem; }
+    .gallery-strip .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--teal-dk); margin-bottom: 0.6rem; }
+    .gallery-strip .section-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+    .strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .strip-item {
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .strip-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .strip-item:hover img { transform: scale(1.06); }
+
+    /* CTA */
     .cta {
-      background: var(--teal-dk);
+      background: var(--navy-mid);
       border-radius: 20px; padding: 3rem 4rem;
       display: flex; align-items: center; justify-content: space-between; gap: 2rem;
       max-width: 1200px; margin: 0 auto 4rem;
@@ -136,14 +224,14 @@
     .cta h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: #fff; line-height: 1.2; }
     .cta p { font-size: 0.87rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
     .cta-btn {
-      background: var(--mint); color: var(--teal-dk);
+      background: var(--gold); color: var(--white);
       font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
       padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; white-space: nowrap;
       transition: background 0.2s, transform 0.15s;
     }
-    .cta-btn:hover { background: #fff; transform: scale(1.03); }
+    .cta-btn:hover { background: var(--ivory); color: var(--navy); transform: scale(1.03); }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border); padding: 2rem 5vw;
       display: flex; align-items: center; justify-content: space-between;
@@ -151,13 +239,15 @@
     }
     footer a { color: var(--teal); text-decoration: none; }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; padding: 3rem 5vw 2rem; }
       .trust-grid { display: none; }
       .service-card { grid-template-columns: 1fr !important; direction: ltr !important; }
       .card-body { padding: 1.75rem; }
       .cta { flex-direction: column; align-items: flex-start; padding: 2.5rem; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .strip-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -202,6 +292,26 @@
   </div>
 </section>
 
+<!-- BEFORE / AFTER -->
+<div class="ba-section">
+  <p class="section-label">The difference we make</p>
+  <h2 class="section-title">Before &amp; After</h2>
+  <p class="section-sub">See the transformation our team delivers — dirty to spotless, every time.</p>
+
+  <div class="ba-grid">
+    <div class="ba-card">
+      <img src="img3.jpg" alt="Window before cleaning — dirty with grime"/>
+      <span class="ba-label before">Before</span>
+      <div class="ba-caption">Window guard — caked with dust &amp; grime</div>
+    </div>
+    <div class="ba-card">
+      <img src="img4.jpg" alt="Window after cleaning — sparkling clean"/>
+      <span class="ba-label after">After</span>
+      <div class="ba-caption">Same window — thoroughly cleaned &amp; restored</div>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <div class="section-wrap">
   <p class="section-label">Our services</p>
@@ -211,7 +321,7 @@
   <!-- 1. RESIDENTIAL -->
   <article class="service-card">
     <div class="card-img-wrap">
-      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop" alt="Spotless residential living room after cleaning"/>
+      <img src="img1.jpg" alt="Residential door cleaning service"/>
     </div>
     <div class="card-body">
       <span class="service-tag">Homes</span>
@@ -230,7 +340,7 @@
   <!-- 2. COMMERCIAL -->
   <article class="service-card reverse">
     <div class="card-img-wrap">
-      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop" alt="Clean commercial business premises"/>
+      <img src="img2.jpg" alt="Commercial door and premises cleaning"/>
     </div>
     <div class="card-body">
       <span class="service-tag">Offices &amp; Shops</span>
@@ -249,7 +359,7 @@
   <!-- 3. OFFICE -->
   <article class="service-card">
     <div class="card-img-wrap">
-      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop" alt="Tidy modern office workspace after professional cleaning"/>
+      <img src="img5.jpg" alt="Office and workspace cleaning service"/>
     </div>
     <div class="card-body">
       <span class="service-tag">Workspace</span>
@@ -268,7 +378,7 @@
   <!-- 4. POST-CONSTRUCTION -->
   <article class="service-card reverse">
     <div class="card-img-wrap">
-      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop" alt="Freshly cleaned newly built interior ready for move-in"/>
+      <img src="img3.jpg" alt="Post-construction window cleaning"/>
     </div>
     <div class="card-body">
       <span class="service-tag">After Building</span>
@@ -283,7 +393,21 @@
       <a class="book-btn" href="contact.html">Get a quote &#8594;</a>
     </div>
   </article>
+</div>
 
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <p class="section-label">Our work</p>
+  <h2 class="section-title">More from the field</h2>
+  <p class="section-sub">A glimpse of the spaces we've transformed across Ghana.</p>
+  <div class="strip-grid">
+    <div class="strip-item"><img src="img1.jpg" alt="Security door cleaning"/></div>
+    <div class="strip-item"><img src="img2.jpg" alt="Classic door restoration"/></div>
+    <div class="strip-item"><img src="img4.jpg" alt="Window guard after clean"/></div>
+    <div class="strip-item"><img src="img5.jpg" alt="Premium door cleaning"/></div>
+    <div class="strip-item"><img src="img3.jpg" alt="Window before clean"/></div>
+    <div class="strip-item"><img src="img2.jpg" alt="Entrance door service"/></div>
+  </div>
 </div>
 
 <!-- CTA -->
